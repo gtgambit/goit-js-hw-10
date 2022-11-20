@@ -1,5 +1,4 @@
 import './css/styles.css';
-//import createCountryCards from "./templates/countryInfoCards.hbs";
 import { fetchCountries } from './js/fetchCountries';
 import Notiflix from 'notiflix';
 import { debounce } from 'lodash';
