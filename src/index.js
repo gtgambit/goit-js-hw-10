@@ -1,7 +1,7 @@
+import './css/styles.css';
 import { fetchCountries } from './js/fetchCountries';
 import Notiflix from 'notiflix';
 import { debounce } from 'lodash';
-import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
 const inputEl = document.querySelector('#search-box');
@@ -67,4 +67,5 @@ function renderCountry(countryObj) {
   );
 }
 //  const countryInfoCards = createCountryCards(country);
+//
 //
