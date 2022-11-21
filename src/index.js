@@ -11,14 +11,20 @@ let countryName = null;
 inputEl.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 
 function onInputChange(countryName) {
+  ulEl.innerHTML = '';
+  divEl.innerHTML = '';
   countryName = inputEl.value.trim().toLowerCase();
-  fetchCountries(countryName)
-    .then(data => renderCountry(data))
-    .catch(error => {
-      if (error.message === '404') {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-      }
-    });
+  if (countryName === '') {
+    return;
+  } else {
+    fetchCountries(countryName)
+      .then(data => renderCountry(data))
+      .catch(error => {
+        if (error.message === '404') {
+          Notiflix.Notify.failure('Oops, there is no country with that name');
+        }
+      });
+  }
 }
 
 function renderCountry(countryObj) {
@@ -39,8 +45,6 @@ function renderCountry(countryObj) {
           </p>`;
       }
     );
-    ulEl.innerHTML = '';
-    divEl.innerHTML = '';
     divEl.innerHTML = countryInfo;
     return;
   }
@@ -55,13 +59,11 @@ function renderCountry(countryObj) {
   </li>`;
       })
       .join('');
-    ulEl.innerHTML = '';
-    divEl.innerHTML = '';
+
     ulEl.innerHTML = countryInfo;
     return;
   }
-  divEl.innerHTML = '';
-  ulEl.innerHTML = '';
+
   Notiflix.Notify.info(
     'Too many matches found. Please enter a more specific name.'
   );
