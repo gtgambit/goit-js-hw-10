@@ -14,7 +14,7 @@ function onInputChange(countryName) {
   ulEl.innerHTML = '';
   divEl.innerHTML = '';
   countryName = inputEl.value.trim().toLowerCase();
-  if (countryName === '') {
+  if (!countryName) {
     return;
   } else {
     fetchCountries(countryName)
